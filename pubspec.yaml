@@ -4,7 +4,7 @@ author: Matthew Butler
 description: An application designed to help teach basics of the Dart language and core libraries through Unittests. It is highly recommended that this package is downloaded manually or cloning the github repository. *Do not* install with pub.
 homepage: https://github.com/butlermatt/dart_koans
 environment:
-  sdk: '^2.3.0'
+  sdk: '^3.2.5'
 dependencies:
-  path: '^1.7.0'
-  test: '^1.14.2'
+  path: '^1.9.0'
+  test: '^1.25.1'

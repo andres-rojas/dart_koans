@@ -24,16 +24,6 @@ void main() {
         var list = [3, 2, 4.5, 0.03, 'string', ['sublist', true], false];
         expect(_____, isA<List>());
       });
-      test('Constructor', () {
-        /*
-         * Lists can also be created with a constructor. We'll 
-         * learn about constructors more later on, but let's take
-         * a peek now as it's a fairly common way of declaring a
-         * list.
-         */
-        var list = new List();
-        expect(_____, isA<List>());
-      });
       test('Using Generics', () {
         /*
          * Occasionally, you may wish to specify that a list
@@ -43,20 +33,29 @@ void main() {
          * dart in 'checked-mode' which will give you warnings
          * or errors when unexpected types appear.
          */
-        var list = new List<int>();
+        var list = <int>[];
         expect(_____, isA<List>());
       });
-      test('Fixed-Size', () {
-        /*
-         * One final way to declare a list is by passing a size
-         * value to the constructor. This will create an 
-         * 'immutable list'. That is, it creates a which cannot
-         * grow or shrink in size. We'll see how this affects
-         * lists soon. This works with a standard list or a
-         * list using Generics.
-         */
-        var list = new List(10);
-        expect(_____, isA<List>());
+      group('Fixed-Size', () {
+        test('using filled', () {
+          /*
+          * One final way to declare a list is by using the
+          * List.filled constructor. This will create an
+          * 'immutable list'. That is, it creates a list which
+          * cannot grow or shrink in size. We'll see how this
+          * affects lists soon.
+          */
+          var list = List.filled(10, 0);
+          expect(_____, isA<List>());
+        });
+        test('Fixed', () {
+          /*
+           * This works with a standard list
+           * or a list using Generics.
+           */
+          var list = List<int>.filled(10, 0);
+          expect(_____, isA<List>());
+        });
       });
     });
     group('Accessing -', () {
@@ -78,15 +77,45 @@ void main() {
         list[2] = 'three sir!';
         expect(list, equals(['one', 'two', '_____']));
       });
-      test('Sub-lists', () {
-        /*
-         * Just as you would expect, you can access sublists
-         * with [][] One for each list you need to access.
-         * Write the expected indices to retreive the value
-         * in equals. (Don't forget indices start at 0).
-         */
-        var list = ['one', ['two', 2], ['three', 3.3, 3]];
-        expect(_____, equals(3.3));
+      group('multi-dimensional lists', () {
+        test('', () {
+          /*
+           * Just as you would expect, you can access sublists
+           * with [][], one bracket pair for each list you need
+           * to access. Write the expected indices to retreive
+           * the value in equals. (Don't forget indices start at
+           * 0).
+           */
+          var list = [['one'], ['two', 2], ['three', 3.3, 3]];
+          expect(_____, equals(3.3));
+        });
+        group('with mixed types', () {
+          test("are List<Object>s", () {
+            /*
+             * However, a multi-dimensional list must consist of
+             * a list of lists. If you declare a mixed-type list
+             * it becomes a list of objects. You cannot directly
+             * address a sublist within a List<Object>.
+             */
+            var list = ['one', ['two', 2], ['three', 3.3, 3]];
+            expect(_____, isA<List<Object>>());
+          });
+          test("must be casted to access sublists", () {
+            /*
+             * If you must access a sublist within a list of
+             * objects, you will need to first cast the sublist
+             * with "as List" to access the nested value.
+             *
+             * Warning: this is an easy way to end up with
+             * runtime errors! This only works if you are *sure*
+             * that the object you cast is a List. Strongly
+             * consider if you're using the best data structure.
+             */
+            var list = ['one', ['two', 2], ['three', 3.3, 3]];
+            var sublist = list[2] as List;
+            expect(sublist[1], equals(_____));
+          });
+        });
       });
     });
     group('Methods -', () {
@@ -102,31 +131,36 @@ void main() {
         });
         test('empty list', () {
           /*
-           * When you call a constructor for a list. The inital
-           * list is empty. It doesn't matter if we're using a
-           * list with generics.
+           * When you initialize a list. The inital list is
+           * empty. It doesn't matter if we're using a list
+           * with generics.
            */
-          var list = new List<int>();
+          var list = <int>[];
           expect(list.length, equals(_____));
         });
         test('fixed size', () {
           /*
            * So what about when we have an immutable list?
            */
-          var list = new List(10);
+          var list = List.filled(10, 0);
           expect(list.length, equals(_____));
         });
         test('setting growing', () {
           /*
-           * An often over looked feature is that you can also
+           * An often overlooked feature is that you can also
            * use length to set the size of a mutable list.
-           * If you are growing a list larger than it previously
-           * was, then new elements are added to the end and
-           * are initialized to null
+           *
+           * However, with Dart3's introduction of null-safety,
+           * if you use this method to try to grow a list
+           * larger than it previously was, it results in
+           * throwing a TypeError.
+           *
+           * Fill in 'broken' below.
            */
           var list = [0, 1, 2];
-          list.length = 5;
-          expect(list, equals(_____));
+          // Need below to properly wrap the exception.
+          var broken = () => list.length = 5;
+          expect(_____, throwsA(isA<TypeError>()));
         });
         test('setting shrinking', () {
           /*
@@ -145,8 +179,7 @@ void main() {
            * UnsupportedOperationException. Fill in 'broken'
            * below.
            */
-          var list = new List(5);
-          // Need below to properly wrap the exception.
+          var list = List.filled(5, 0);
           var broken = () => list.length = 10;
           expect(_____, throwsUnsupportedError);
         });
@@ -190,7 +223,7 @@ void main() {
            * an immutable list, trying to add to an immutable
            * list will result in an UnsupportedOperationException
            */
-          var list = new List(5);
+          var list = List.filled(5, 0);
           var broken = () => list.add(10);
           expect(_____, throwsUnsupportedError);
         });

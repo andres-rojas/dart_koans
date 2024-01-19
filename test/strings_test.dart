@@ -16,7 +16,7 @@ void main() {
          * Fill in what str should equal below.
          */
         String str = 'This is a string.';
-        expect(_____, equals('This is a string.'));
+        expect(str, equals('This is a string.'));
       });
       test('double quotes', () {
         /*
@@ -25,7 +25,7 @@ void main() {
          * apostrophe in a sentence.
          */
         String str = "Wasn't that easy?";
-        expect(str, equals(_____));
+        expect(str, equals("Wasn't that easy?"));
       });
       test('escape sequences', () {
         /*
@@ -39,7 +39,7 @@ void main() {
          *  \t for a tab space.
          */
         String str = 'Single \'quoted\' or double\n';
-        expect(str, equals("_____\n"));
+        expect(str, equals("Single 'quoted' or double\n"));
       });
       test('triple quotes', () {
         /*
@@ -55,7 +55,7 @@ void main() {
          */
         var str = '''
 One and
-_____
+two
 ''';
         expect(str, equals('One and\ntwo\n'));
       });
@@ -68,7 +68,7 @@ _____
          * Fill in _____ with the escaped version of str.
          */
         var str = r'\n is a new line\n';
-        expect(str, equals('_____'));
+        expect(str, equals('\\n is a new line\\n'));
       });
     });
     group('Concatenation -', () {
@@ -85,7 +85,7 @@ _____
          */
         var str = 'One '
             'and two.';
-        expect(_____, equals('One and two.'));
+        expect(str, equals('One and two.'));
       });
       test('"+" concatenation', () {
         /*
@@ -94,7 +94,7 @@ _____
          */
         var str = 'One and ';
         var str2 = 'two.';
-        expect(str + str2, equals(_____));
+        expect(str + str2, equals('One and two.'));
       });
       test('"+" only with strings', () {
         /*
@@ -107,8 +107,7 @@ _____
          * now just concentrate on the fact that a string and 
          * non-string added together throws an error.
          */
-        
-        
+
         var broken;
         // Uncomment line below!
         // broken = () => 'two ' + 3;
@@ -126,7 +125,7 @@ _____
          */
         var action = 'be nice';
         var str = 'Please $action to me';
-        expect(str, equals('Please _____ to me'));
+        expect(str, equals('Please be nice to me'));
       });
       test('toString', () {
         /* 
@@ -137,7 +136,7 @@ _____
          * look at Objects.
          */
         int number = 101;
-        expect('$number dalmatians', equals(_____));
+        expect('$number dalmatians', equals('101 dalmatians'));
       });
       test('complex', () {
         /*
@@ -150,7 +149,7 @@ _____
         var one = 1;
         var two = 2;
         var str = '$one plus $two equals ${one + two}';
-        expect(str, equals('1 plus 2 equals _____'));
+        expect(str, equals('1 plus 2 equals 3'));
       });
     });
     group('Accessing -', () {
@@ -163,7 +162,7 @@ _____
          * index of 0.
          */
         var str = 'My little string';
-        expect(str[1], equals(_____));
+        expect(str[1], equals('y'));
       });
       test('immutable', () {
         /*
@@ -178,17 +177,17 @@ _____
          */
         var str = 'Hello';
         str = '$str there!';
-        
+
         // Because of how the testing framework works, we need to
         // put any code that generates an error inside of a function.
         // We'll cover that in more detail later. For now only be
         // concerned that anything after the => below causes the
         // error to be thrown.
-        
+
         var broken;
         // Uncomment line below!
-        // broken = () => str[0] = 'h'; 
-        expect(_____, throwsNoSuchMethodError);
+        // broken = () => str[0] = 'h';
+        expect(broken, throwsNoSuchMethodError);
       });
     });
   });

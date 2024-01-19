@@ -14,15 +14,23 @@ void main() {
          * Fill in the literal that list should equal below.
          */
         List list = [3, 2, 5];
-        expect(list, equals(_____));
+        expect(list, equals([3, 2, 5]));
       });
       test('Multiple Types', () {
         /*
          * Unlike arrays in some other languages. Lists in dart
          * can contain multiple different types.
          */
-        var list = [3, 2, 4.5, 0.03, 'string', ['sublist', true], false];
-        expect(_____, isA<List>());
+        var list = [
+          3,
+          2,
+          4.5,
+          0.03,
+          'string',
+          ['sublist', true],
+          false
+        ];
+        expect(list, isA<List>());
       });
       test('Using Generics', () {
         /*
@@ -34,7 +42,7 @@ void main() {
          * or errors when unexpected types appear.
          */
         var list = <int>[];
-        expect(_____, isA<List>());
+        expect(list, isA<List>());
       });
       group('Fixed-Size', () {
         test('using filled', () {
@@ -46,7 +54,7 @@ void main() {
           * affects lists soon.
           */
           var list = List.filled(10, 0);
-          expect(_____, isA<List>());
+          expect(list, isA<List>());
         });
         test('Fixed', () {
           /*
@@ -54,7 +62,7 @@ void main() {
            * or a list using Generics.
            */
           var list = List<int>.filled(10, 0);
-          expect(_____, isA<List>());
+          expect(list, isA<List>());
         });
       });
     });
@@ -66,7 +74,7 @@ void main() {
          * list. The first element of a list is index 0.
          */
         var list = ['zero', true, 2, 3.5];
-        expect(list[1], equals(_____));
+        expect(list[1], equals(true));
       });
       test('[]=', () {
         /*
@@ -75,7 +83,7 @@ void main() {
          */
         var list = ['one', 'two', 'five'];
         list[2] = 'three sir!';
-        expect(list, equals(['one', 'two', '_____']));
+        expect(list, equals(['one', 'two', 'three sir!']));
       });
       group('multi-dimensional lists', () {
         test('', () {
@@ -86,8 +94,12 @@ void main() {
            * the value in equals. (Don't forget indices start at
            * 0).
            */
-          var list = [['one'], ['two', 2], ['three', 3.3, 3]];
-          expect(_____, equals(3.3));
+          var list = [
+            ['one'],
+            ['two', 2],
+            ['three', 3.3, 3]
+          ];
+          expect(list[2][1], equals(3.3));
         });
         group('with mixed types', () {
           test("are List<Object>s", () {
@@ -97,8 +109,12 @@ void main() {
              * it becomes a list of objects. You cannot directly
              * address a sublist within a List<Object>.
              */
-            var list = ['one', ['two', 2], ['three', 3.3, 3]];
-            expect(_____, isA<List<Object>>());
+            var list = [
+              'one',
+              ['two', 2],
+              ['three', 3.3, 3]
+            ];
+            expect(list, isA<List<Object>>());
           });
           test("must be casted to access sublists", () {
             /*
@@ -111,9 +127,13 @@ void main() {
              * that the object you cast is a List. Strongly
              * consider if you're using the best data structure.
              */
-            var list = ['one', ['two', 2], ['three', 3.3, 3]];
+            var list = [
+              'one',
+              ['two', 2],
+              ['three', 3.3, 3]
+            ];
             var sublist = list[2] as List;
-            expect(sublist[1], equals(_____));
+            expect(sublist[1], equals(3.3));
           });
         });
       });
@@ -127,7 +147,7 @@ void main() {
            * a list. We want to know the List.length
            */
           var list = [3, 2, true];
-          expect(list.length, equals(_____));
+          expect(list.length, equals(3));
         });
         test('empty list', () {
           /*
@@ -136,14 +156,14 @@ void main() {
            * with generics.
            */
           var list = <int>[];
-          expect(list.length, equals(_____));
+          expect(list.length, equals(0));
         });
         test('fixed size', () {
           /*
            * So what about when we have an immutable list?
            */
           var list = List.filled(10, 0);
-          expect(list.length, equals(_____));
+          expect(list.length, equals(10));
         });
         test('setting growing', () {
           /*
@@ -160,7 +180,7 @@ void main() {
           var list = [0, 1, 2];
           // Need below to properly wrap the exception.
           var broken = () => list.length = 5;
-          expect(_____, throwsA(isA<TypeError>()));
+          expect(broken, throwsA(isA<TypeError>()));
         });
         test('setting shrinking', () {
           /*
@@ -170,7 +190,7 @@ void main() {
            */
           var list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
           list.length = 3;
-          expect(list, equals(_____));
+          expect(list, equals([0, 1, 2]));
         });
         test('setting fixed size', () {
           /*
@@ -181,7 +201,7 @@ void main() {
            */
           var list = List.filled(5, 0);
           var broken = () => list.length = 10;
-          expect(_____, throwsUnsupportedError);
+          expect(broken, throwsUnsupportedError);
         });
       });
       group('add -', () {
@@ -194,7 +214,7 @@ void main() {
            */
           var list = [0, 1, 2];
           list.add(3);
-          expect(list, equals([_____]));
+          expect(list, equals([0, 1, 2, 3]));
         });
         test('adding lists', () {
           /* Now the add method is designed for adding one
@@ -203,9 +223,20 @@ void main() {
            */
 
           // This must be declared explicitly in Dart2.
-          var list = [0, 1, [2]];
+          var list = [
+            0,
+            1,
+            [2]
+          ];
           list.add([3, 4]);
-          expect(list, equals([_____]));
+          expect(
+              list,
+              equals([
+                0,
+                1,
+                [2],
+                [3, 4]
+              ]));
         });
         test('addAll', () {
           /*
@@ -215,7 +246,7 @@ void main() {
            */
           var list = [0, 1, 2];
           list.addAll([3, 4]);
-          expect(list, equals([_____]));
+          expect(list, equals([0, 1, 2, 3, 4]));
         });
         test('add to fixed size', () {
           /*
@@ -225,7 +256,7 @@ void main() {
            */
           var list = List.filled(5, 0);
           var broken = () => list.add(10);
-          expect(_____, throwsUnsupportedError);
+          expect(broken, throwsUnsupportedError);
         });
       });
     }); // end of methods group.

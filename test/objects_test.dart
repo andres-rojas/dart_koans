@@ -11,7 +11,7 @@ void main() {
          * but everything in Dart is an object.
          */
         var number = 5;
-        expect(_____, isA<Object>());
+        expect(number, isA<Object>());
       });
       test('Simple Types', () {
         /*
@@ -19,7 +19,7 @@ void main() {
          * are objects as well.
          */
         bool boolean = true;
-        expect(_____, isA<Object>());
+        expect(boolean, isA<Object>());
       });
       test('Even literals', () {
         /*
@@ -30,7 +30,7 @@ void main() {
          * way of checking a type. We'll look at that later
          * as well.
          */
-        expect(5, _____);
+        expect(5, isA<num>());
       });
     });
     group('Methods -', () {
@@ -42,7 +42,7 @@ void main() {
          * though we can't call them explicity when we do
          * something like 5 + 3 it's the same as 5.+(3);
          */
-        expect(5.32.toString(), equals('_____'));
+        expect(5.32.toString(), equals('5.32'));
       });
       test('Type specific', () {
         /* 
@@ -54,7 +54,7 @@ void main() {
          * boolean (true/false) value.
          */
         var number = -3;
-        expect(number.isNegative, equals(_____));
+        expect(number.isNegative, equals(true));
       });
       test('NoSuchMethodError', () {
         /*
@@ -69,7 +69,7 @@ void main() {
         var broken;
         // Uncomment line below!
         // broken = () => boolean.causeError();
-        expect(_____, throwsNoSuchMethodError);
+        expect(broken, throwsNoSuchMethodError);
       });
     });
   });

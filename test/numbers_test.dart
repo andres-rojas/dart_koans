@@ -12,8 +12,8 @@ void main() {
        * and re-run the application to verify your fix.
        * Below, change _____ to be false and try to proceed.
        */
-        expect(_____, equals(false));
-      });
+      expect(false, equals(false));
+    });
     test('Beginning', () {
       /*
        * The comparison on the end will not always be a specific
@@ -22,7 +22,7 @@ void main() {
        * to run the program, it should tell you what you need to
        * do to make the test pass.
        */
-      expect(_____, isTrue);
+      expect(true, isTrue);
     });
   });
   group('Numbers -', () {
@@ -32,14 +32,14 @@ void main() {
        * The num type holds numbers including whole numbers.
        */
       num number = 5;
-      expect(_____, isA<num>());
+      expect(number, isA<num>());
     });
     test('num - decimal numbers', () {
       /*
        * The num type can also hold decimal numbers
        */
       num number = 5.3;
-      expect(_____, isA<num>());
+      expect(number, isA<num>());
     });
     test('var', () {
       /*
@@ -48,7 +48,7 @@ void main() {
        * for variable) or as a specific type.
        */
       var number = 5;
-      expect(_____, isA<num>());
+      expect(number, isA<num>());
     });
     group('Integers -', () {
       test('int', () {
@@ -58,7 +58,7 @@ void main() {
          * whole numbers.
          */
         int number = 5;
-        expect(_____, isA<int>());
+        expect(number, isA<int>());
       });
       test('num', () {
         /*
@@ -67,7 +67,7 @@ void main() {
          * int is a num.
          */
         int number = 5;
-        expect(_____, isA<num>());
+        expect(number, isA<num>());
       });
       test('var', () {
         /*
@@ -75,14 +75,14 @@ void main() {
          * were not declared.
          */
         var number = 5;
-        expect(_____, isA<int>());
+        expect(number, isA<int>());
       });
       test('not decimal', () {
         /*
          * Note that decimal numbers are not Integers (int)
          */
         var number = 5.3;
-        expect(_____, isNot(isA<int>()));
+        expect(number, isNot(isA<int>()));
       });
       test('arbitrary size', () {
         /*
@@ -90,8 +90,9 @@ void main() {
          * are of an arbitrary size. Unlike in many other languages
          * where they have a maximum upper limit.
          */
-        var number = BigInt.parse("100085866835557563992823856846813251884354791321628");
-        expect(_____, isA<BigInt>());
+        var number =
+            BigInt.parse("100085866835557563992823856846813251884354791321628");
+        expect(number, isA<BigInt>());
       });
     });
     group('Decimals -', () {
@@ -102,14 +103,14 @@ void main() {
          * point number. 
          */
         double number = 5.3;
-        expect(_____, isA<double>());
+        expect(number, isA<double>());
       });
       test('num', () {
         /*
          * Just like integers, doubles are a subclass of num.
          */
         double number = 5.3;
-        expect(_____, isA<num>());
+        expect(number, isA<num>());
       });
       test('var', () {
         /*
@@ -117,14 +118,14 @@ void main() {
          * is actually holding a double.
          */
         var number = 5.3;
-        expect(_____, isA<double>());
+        expect(number, isA<double>());
       });
       test('not integer', () {
         /*
          * And remember that integers are not doubles.
          */
         var number = 5;
-        expect(_____, isNot(isA<double>()));
+        expect(number, isNot(isA<double>()));
       });
       test('supports exponents', () {
         /* 
@@ -132,8 +133,8 @@ void main() {
          * Integers do not.
          */
         var number = 1.423e12;
-        expect(_____, isA<double>());
-        expect(_____, isNot(isA<int>()));
+        expect(number, isA<double>());
+        expect(number, isNot(isA<int>()));
       });
     });
     test('which type', () {
@@ -146,7 +147,7 @@ void main() {
        * or 'var'.
        */
       var number = 5.0;
-      expect(number, _____);
+      expect(number, isA<double>());
     });
   });
 }
